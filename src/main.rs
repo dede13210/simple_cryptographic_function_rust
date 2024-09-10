@@ -1,9 +1,12 @@
 mod cesar_encrypt;
 
-use std::string;
-use cesar_encrypt::cesar_encrypt_string;
+use cesar_encrypt::scenario_cesar;
+
 
 fn main() {
-    let secret_message:string::String = cesar_encrypt_string("hello", 3);
-    println!("{}", secret_message);
+    // Call the scenario function 3 times
+    scenario_cesar();
+    scenario_cesar();
+    scenario_cesar();
+
 }
