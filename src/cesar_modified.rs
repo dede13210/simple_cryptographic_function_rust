@@ -19,6 +19,9 @@ fn cesar_encrypt_letter(letter: char, key_char: char) -> char {
 
 // Give a string and a key, return the encrypted string
 pub fn cesar_encrypt_string(input: &str, key: &str) -> String {
+    if(input.len() != key.len()) {
+        panic!("The key must have the same length as the input string");
+    }
     let mut encrypted_string = String::with_capacity(input.len());
     let key_chars: Vec<char> = key.chars().collect();
     for (i, letter) in input.chars().enumerate() {
