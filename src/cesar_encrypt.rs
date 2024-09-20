@@ -54,9 +54,9 @@ pub fn scenario_cesar() {
     // generate random integer between 1 and 25
     let k = rand::thread_rng().gen_range(1..=25);
     println!("Voici la clé: {}", k);
-    println!("Voici le message de bob: {}", message);
+    println!("Voici le message de Alice: {}", message);
     let secret_message = cesar_encrypt_string(message, k);
     println!("Eve voit ce message: {}", secret_message);
     let decrypted_message = cesar_decrypt_string(&secret_message, k);
-    println!("Alice peut le déchiffrer: {}", decrypted_message);
+    println!("Bob peut le déchiffrer: {}", decrypted_message);
 }

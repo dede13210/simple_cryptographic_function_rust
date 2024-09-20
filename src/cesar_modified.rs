@@ -19,7 +19,7 @@ fn cesar_encrypt_letter(letter: char, key_char: char) -> char {
 
 // Give a string and a key, return the encrypted string
 pub fn cesar_encrypt_string(input: &str, key: &str) -> String {
-    if(input.len() != key.len()) {
+    if input.len() != key.len() {
         panic!("The key must have the same length as the input string");
     }
     let mut encrypted_string = String::with_capacity(input.len());
@@ -55,9 +55,9 @@ pub fn scenario_cesar_modified() {
     let message: &str = "ceciestlemessageclairadechiffrer";
     let key = random_key();
     println!("Voici la clé: {}", key);
-    println!("Voici le message de bob: {}", message);
+    println!("Voici le message de Alice: {}", message);
     let secret_message = cesar_encrypt_string(message, &key);
     println!("Eve voit ce message: {}", secret_message);
     let decrypted_message = cesar_decrypt_string(&secret_message, &key);
-    println!("Alice peut le déchiffrer: {}", decrypted_message);
+    println!("Bob peut le déchiffrer: {}", decrypted_message);
 }

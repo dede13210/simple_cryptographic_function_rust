@@ -17,26 +17,34 @@ fn xor_string(string1: Vec<u16>, string2: Vec<u16>) -> Vec<u16> {
         .collect()
 }
 
+fn display_utf16_vec_in_bits(vec: Vec<u16>) {
+    for value in vec {
+        println!("{:016b}", value);
+    }
+}
+
 // make scenario
 pub fn scenario_disposable_mask() {
     let message: &str = "ceciestlemessageclairadechiffrer";
-    println!("Voici le message de bob: {}", message);
+    println!("Voici le message de Alice: {}", message);
     
     // Encode the message in UTF-16 to determine the correct length
     let encoded_message: Vec<u16> = message.encode_utf16().collect();
     
     // Generate a key with the same length as the UTF-16 encoded message
     let key = random_binary_string(encoded_message.len());
-    println!("Voici la clé: {:?}", key);
+    println!("Voici la clé en bits");
+    display_utf16_vec_in_bits(key.clone());
 
     // XOR the encoded message with the key
     let secret_message = xor_string(encoded_message.clone(), key.clone());
-    println!("Eve voit ce message: {:?}", secret_message);
+    println!("Eve voit ce message en bits:");
+    display_utf16_vec_in_bits(secret_message.clone());
 
     // Decrypt the message using the same key
     let decrypted_message = xor_string(secret_message, key);
     let decoded_message: String = String::from_utf16(&decrypted_message).expect("Invalid UTF-16 sequence");
-    println!("Alice peut le déchiffrer: {}", decoded_message);
+    println!("Bob peut le déchiffrer: {}", decoded_message);
 }
 
 
