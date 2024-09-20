@@ -40,6 +40,15 @@ fn cesar_decrypt_letter(letter: char, key_char: char) -> char {
     decrypted_letter as char
 }
 
+// Give a lette and a int, return the translated letter
+fn translated_letter_with_int(letter: char, key: u8) -> char {
+    let mut translated = letter as u8 + key;
+    if translated > b'z' {
+        translated -= 26;
+    }
+    translated as char
+}
+
 // Give a string and a key, return the decrypted string
 pub fn cesar_decrypt_string(input: &str, key: &str) -> String {
     let mut decrypted_string = String::with_capacity(input.len());
@@ -51,7 +60,7 @@ pub fn cesar_decrypt_string(input: &str, key: &str) -> String {
 }
 
 // make scenario
-pub fn scenario_cesar_modified() {
+pub fn scenario1_cesar_modified() {
     let message: &str = "ceciestlemessageclairadechiffrer";
     let key = random_key();
     println!("Voici la clé: {}", key);
@@ -60,4 +69,20 @@ pub fn scenario_cesar_modified() {
     println!("Eve voit ce message: {}", secret_message);
     let decrypted_message = cesar_decrypt_string(&secret_message, &key);
     println!("Bob peut le déchiffrer: {}", decrypted_message);
+}
+
+pub fn scenario2_cesar_modified() {
+    let message: &str = "ceciestlemessageclairadechiffrer";
+    let key = random_key();
+    println!("Voici la clé: {}", key);
+    println!("Voici le message de Alice: {}", message);
+    let secret_message = cesar_encrypt_string(message, &key);
+    println!("Eve voit ce message: {}", secret_message);
+    let mut modified_message: Vec<char> = secret_message.chars().collect();
+    modified_message[2] = translated_letter_with_int(modified_message[2], 9 );
+    modified_message[3] = translated_letter_with_int(modified_message[3], 18);
+    let modified_message: String = modified_message.into_iter().collect();
+    println!("Eve modifie le message: {}", modified_message);
+    let decrypted_message = cesar_decrypt_string(&modified_message, &key);
+    println!("Bob le déchiffre: {}", decrypted_message);
 }
