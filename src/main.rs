@@ -10,13 +10,13 @@ use cesar_modified::scenario2_cesar_modified;
 
 fn main() {
     // Call the scenario function 3 times
-    print!("cesar encryption : \n");
+    print!("scénario césar : \n");
     scenario_cesar();
     scenario_cesar();
     scenario_cesar();
     print!("Eve pourrait facilement décoder le message, en effet il n’y a que 26-1 possibilité pour déchiffrer le message.\n");
 
-    print!("disposable mask : \n");
+    print!("masque jetable : \n");
     scenario_disposable_mask();
     scenario_disposable_mask();
     scenario_disposable_mask();
@@ -24,14 +24,14 @@ fn main() {
     chiffre de Vernam est un chiffrement parfaitement sûr. Pour chaque bit du message, il y a 2 choix possibles pour le bit de la
     clé (0 ou 1). Donc, pour un message de longueur n, il y a 2 puissance n*16 clés possibles. \n");
 
-    print!("cesar modified scenario 1: \n");
+    print!("scenario césar modifié 1: \n");
     scenario1_cesar_modified();
     scenario1_cesar_modified();
     scenario1_cesar_modified();
     print!("Eve ne peut pas déchiffrer ce message avec l’information qu’elle voit, car le chiffrement de César modifié est
     un chiffrement parfaitement sûr. Pour chaque bit du message, il y a 26 clés possibles. Donc, pour un message de longueur n,
     il y a 26 puissance n clés possibles. \n");
-    print!("cesar modified scenario 2: \n");
+    print!("scenario césar modifié 2: \n");
     scenario2_cesar_modified();
     scenario2_cesar_modified();
     scenario2_cesar_modified();
